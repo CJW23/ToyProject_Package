@@ -3,7 +3,10 @@ import chapter1.Plus10;
 import chapter2.DefaultFoo;
 import chapter2.Foo;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Spliterator;
 import java.util.function.*;
 
 public class JavaPracticeMain {
@@ -66,14 +69,46 @@ public class JavaPracticeMain {
     }*/
 
     /**
+     * Chapter2-1
      * 인터페이스 기본 메소드와 스태틱 메소드
      * 2020.11.21
      */
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Foo foo = new DefaultFoo("cjw");
         foo.printName();
         //default 메소드 호출
         foo.printNameUpperCase();
         Foo.printAnything();
+    }*/
+
+    /**
+     * Chapter2-2
+     * 자바8 API의 기본메소드와 스태틱 메소드
+     */
+    public static void main(String[] args) {
+        List<String> list = new ArrayList<>();
+        list.add("a");
+        list.add("b");
+        list.add("c");
+        list.add("d");
+
+        /*Spliterator<String> spliterator = list.spliterator();
+        //List의 forEach
+        list.forEach(System.out::println);
+        list.forEach((str) -> {
+            System.out.println(str);
+        });
+        //두개는 똑같음
+        //while(spliterator.tryAdvance(System.out::println));
+        //while(spliterator.tryAdvance((str) -> {System.out.println(str);}));
+
+        //Spliterator는 두번 순환을 안하는듯.
+        Spliterator<String> spliterator1 = spliterator.trySplit();
+        while(spliterator.tryAdvance(System.out::println));
+        while(spliterator1.tryAdvance(System.out::println));*/
+
+        //removeIf -> Predicate -> 구현문의 boolean을 따진다
+        list.removeIf(s -> s.equals("a"));
+        list.forEach(System.out::println);
     }
 }
