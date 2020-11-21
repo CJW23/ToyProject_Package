@@ -1,3 +1,5 @@
+package chapter1;
+
 public class Greeting {
     private String name;
     public Greeting() {
