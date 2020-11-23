@@ -1,13 +1,11 @@
-import chapter1.Greeting;
-import chapter1.Plus10;
-import chapter2.DefaultFoo;
-import chapter2.Foo;
-import chapter2.OnlineClass;
+import chapter3.OnlineClass;
+import chapter4.Progress;
 
-import java.util.*;
-import java.util.function.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class JavaPracticeMain {
     /**
@@ -154,7 +152,7 @@ public class JavaPracticeMain {
      * Chapter3-2
      * Stream API
      */
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         List<OnlineClass> springClasses = new ArrayList<>();
         springClasses.add(new OnlineClass(1, "spring boot", true));
         springClasses.add(new OnlineClass(2, "spring data jpa", true));
@@ -197,8 +195,8 @@ public class JavaPracticeMain {
         System.out.println("10부터 1씩 증가하는 무제한 스트림 중에서 앞에 10개 빼고 최대 10개 까지만");
 
         //이런 경우 무제한으로 계속 생성 10부터 1씩 증가하면서
-        /*Stream.iterate(10, i -> i + 1)
-                .forEach(System.out::println);*/
+        *//*Stream.iterate(10, i -> i + 1)
+                .forEach(System.out::println);*//*
         Stream.iterate(10, i -> i + 1)
                 .skip(10)
                 .limit(10)
@@ -214,5 +212,56 @@ public class JavaPracticeMain {
                 .map(OnlineClass::getTitle)
                 .collect(Collectors.toList());
         spring.forEach(System.out::println);
+    }*/
+
+    /**
+     * Chapter4
+     * Optional
+     */
+    public static void main(String[] args) {
+        List<OnlineClass> springClasses = new ArrayList<>();
+        springClasses.add(new OnlineClass(1, "spring boot", true));
+        springClasses.add(new OnlineClass(5, "rest api development", false));
+
+        //이 경우 jpa가 들은 데이터가 존재하지 않으므로 null pointer exception
+        Optional<OnlineClass> optional = springClasses.stream()
+                .filter(oc -> oc.getTitle().startsWith("spring"))
+                .findFirst();
+        //OnlineClass onlineClass = optional.get();   //권장되지 않음
+        //System.out.println(onlineClass.getTitle());
+        List<OnlineClass> s = optional.stream().filter(o -> o.getTitle().startsWith("aw")).collect(Collectors.toList());
+        optional.ifPresent(oc -> System.out.println(oc.getTitle()));
+
+        //있으면 가져오고 없으면 새로 만든다. //존재해도 실행된다.
+        OnlineClass onlineClass = optional.orElse(createNewClasses());
+        System.out.println(onlineClass.getTitle());
+
+        //존재하지 않을때만 가져온다.
+        OnlineClass onlineClass1 = optional.orElseGet(JavaPracticeMain::createNewClasses);
+        System.out.println((onlineClass1.getTitle()));
+
+        //없으면 에러를 던진다.
+        OnlineClass onlineClass2 = optional.orElseThrow(IllegalArgumentException::new);
+
+        Optional<OnlineClass> onlineClass3 = optional.filter(Predicate.not(OnlineClass::isClosed));     //비어있다.
+        System.out.println(onlineClass3.isEmpty());
+
+
+        /*Optional<Optional<Progress>> progress = optional.map(OnlineClass::getProgress);
+        Optional<Progress> progress1 = progress.orElseThrow();
+        progress1.orElseThrow(); //이 구문을 flatMap을 사용하여 한번 optional을 까줄 수 있다.*/
+
+        Optional<Progress> progress2 = optional.flatMap(OnlineClass::getProgress);
+
+        optional.ifPresent(awd -> {
+            System.out.println(awd.getTitle());
+            //return 0; -> consumer이기때문에 return형이 안된다.
+        });
+    }
+
+
+    private static OnlineClass createNewClasses() {
+        System.out.println("create new online class");
+        return new OnlineClass(10, "new class", false);
     }
 }

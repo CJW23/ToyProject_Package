@@ -1,4 +1,8 @@
-package chapter2;
+package chapter3;
+
+import chapter4.Progress;
+
+import java.util.Optional;
 
 public class OnlineClass {
 
@@ -36,5 +40,9 @@ public class OnlineClass {
 
     public void setClosed(boolean closed) {
         this.closed = closed;
+    }
+
+    public Optional<Progress> getProgress() {
+        return Optional.empty();
     }
 }
