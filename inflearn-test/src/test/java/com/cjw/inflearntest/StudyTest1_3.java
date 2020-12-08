@@ -4,6 +4,9 @@ import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * JUnit5 시작하기
+ */
 class StudyTest1_3 {
 
     @Test//public 안붙여도 됨 junit5부터

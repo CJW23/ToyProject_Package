@@ -6,6 +6,9 @@ import java.time.Duration;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * JUni5 Assertion
+ */
 class StudyTest1_5 {
     @Test
     @DisplayName("스터티 만들기")

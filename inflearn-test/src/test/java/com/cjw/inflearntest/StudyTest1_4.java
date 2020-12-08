@@ -3,6 +3,10 @@ package com.cjw.inflearntest;
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * JUnit5 테스트 이름 표시하기
+ */
 //클래스의 모든 메소드에 적용
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class StudyTest1_4 {
