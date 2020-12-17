@@ -1,4 +1,4 @@
-public class Main {
+/*public class Main {
     public static void main(String[] args) {
         Flyweight flyweight = new Flyweight();
         flyweight.getSubject("a");
@@ -6,5 +6,5 @@ public class Main {
         flyweight.getSubject("b");
         flyweight.getSubject("b");
     }
-}
+}*/
 
