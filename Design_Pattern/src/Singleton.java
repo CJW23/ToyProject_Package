@@ -21,7 +21,7 @@ public class Singleton {
     }
 }
 
-class Main {
+/*class Main {
     public static int num = 1;
     public static void main(String[] args) {
         Runnable run = () -> {
@@ -34,4 +34,4 @@ class Main {
             thread.start();
         }
     }
-}
+}*/
