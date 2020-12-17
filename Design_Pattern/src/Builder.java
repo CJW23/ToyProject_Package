@@ -1,5 +1,5 @@
 public class Builder {
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Person person = Person.builder()
                 .a("a")
                 .b("b")
@@ -10,7 +10,7 @@ public class Builder {
                 person.getA() +
                         person.getB() +
                         person.getC() + person.getD());
-    }
+    }*/
 }
 
 class Person {
