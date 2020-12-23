@@ -1,18 +1,13 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/security?serverTimezone=UTC&characterEncoding=UTF-8
+    url: jdbc:mysql://localhost:3306/inflearn_security?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
     password: awdsd123
-  security:
-    user:
-      name: awd
-      password: awd
-      roles: ADMIN
   jpa:
     hibernate:
       #옵션 create, update, none, create-drop, validate 있음
-      ddl-auto: none
+      ddl-auto: create
     properties:
       hibernate:
         format_sql: true
