@@ -41,4 +41,10 @@ public class SampleController {
         model.addAttribute("message", "Admin " + principal.getName());
         return "admin";
     }
+
+    @GetMapping("/user")
+    public String user(Model model, Principal principal) {
+        model.addAttribute("message", "User " + principal.getName());
+        return "user";
+    }
 }
